@@ -60,7 +60,6 @@ public class RepoTest {
         Assertions.assertThat(items.get(0)).hasFieldOrPropertyWithValue("name", "Elixir of the Mongoose");
         Assertions.assertThat(items.get(1)).hasFieldOrPropertyWithValue("quality", 10);
 
-    
         Assertions.assertThat(servicio.cargaItems("Varita de Sauco")).isEmpty();
     }
 

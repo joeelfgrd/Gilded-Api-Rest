@@ -1,6 +1,6 @@
 package edu.badpals.Repo;
-import edu.badpals.Item;
 
+import edu.badpals.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

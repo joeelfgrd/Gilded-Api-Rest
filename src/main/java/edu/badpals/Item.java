@@ -1,10 +1,19 @@
 package edu.badpals;
-
-import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name="t_items")
+@Data
+@NoArgsConstructor
 public class Item{
+
 
     @Column(name = "item_nom")
     public String name = "";
@@ -25,18 +34,9 @@ public class Item{
         this.quality = quality;
     }
 
-    public Item() {}
 
     @Override
    public String toString() {
         return this.name + ", " + this.quality + ", " + this.sellIn;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
