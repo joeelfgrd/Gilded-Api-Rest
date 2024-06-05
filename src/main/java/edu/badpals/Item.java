@@ -1,28 +1,23 @@
 package edu.badpals;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "items")
-@NoArgsConstructor
-public class Item {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public @Getter Long id;
-    
+@Table(name="t_items")
+public class Item{
+
     @Column(name = "item_nom")
-    public String name;
+    public String name = "";
+
     @Column(name = "item_sellin")
-    public int sellIn;
+    public int sellIn = 0;
+
     @Column(name = "item_quality")
-    public int quality;
+    public int quality = 0;
+
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -30,9 +25,18 @@ public class Item {
         this.quality = quality;
     }
 
-@Override
-public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+    public Item() {}
+
+    @Override
+   public String toString() {
+        return this.name + ", " + this.quality + ", " + this.sellIn;
     }
-    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
