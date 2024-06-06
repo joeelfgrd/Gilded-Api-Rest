@@ -29,6 +29,7 @@
           </dependency>
       </dependencies>
   </dependencyManagement>
+  
 
   <dependencies>
       <!-- Quarkus Dependencies -->
