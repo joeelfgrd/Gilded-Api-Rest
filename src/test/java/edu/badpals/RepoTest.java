@@ -18,7 +18,7 @@ public class RepoTest {
     jakarta.persistence.EntityManager em;
 
     @Inject
-    Repo servicio;
+    Repo repo;
 
 
     @Inject
@@ -35,7 +35,7 @@ public class RepoTest {
 
     @Test
     public void test_carga_normalItem() {
-        Item elixir = servicio.cargaItem(2000L);
+        Item elixir = repo.cargaItem(2000L);
         Assertions.assertThat(elixir).isNotNull();
         Assertions.assertThat(elixir.name).isEqualTo(("Elixir of the Mongoose"));
         Assertions.assertThat(elixir.quality).isEqualTo(7);
@@ -44,7 +44,7 @@ public class RepoTest {
 
     @Test
     public void test_carga_normalItem_no_existe() {
-        Item elixir = servicio.cargaItem(2L);
+        Item elixir = repo.cargaItem(2L);
         Assertions.assertThat(elixir).isNotNull();
         Assertions.assertThat(elixir.name).isEmpty();
         Assertions.assertThat(elixir.quality).isZero();
@@ -53,14 +53,14 @@ public class RepoTest {
 
     @Test
     public void test_carga_items(){
-        Assertions.assertThat(servicio).isNotNull();
+        Assertions.assertThat(repo).isNotNull();
 
-        List<Item> items = servicio.cargaItems("Elixir of the Mongoose");
+        List<Item> items = repo.cargaItems("Elixir of the Mongoose");
         Assertions.assertThat(items).isNotEmpty().hasSize(2);
         Assertions.assertThat(items.get(0)).hasFieldOrPropertyWithValue("name", "Elixir of the Mongoose");
         Assertions.assertThat(items.get(1)).hasFieldOrPropertyWithValue("quality", 10);
 
-        Assertions.assertThat(servicio.cargaItems("Varita de Sauco")).isEmpty();
+        Assertions.assertThat(repo.cargaItems("Varita de Sauco")).isEmpty();
     }
 
     @Test
@@ -69,7 +69,7 @@ public class RepoTest {
 
         Integer largo = itemRepo.listAll().size();
         Item item = new Item("Sulfura", 50, 3);
-        Item item2 = servicio.crearItem(item);
+        Item item2 = repo.crearItem(item);
         Assertions.assertThat(item2.name).isEqualTo("Sulfura");
         Assertions.assertThat(item2.sellIn).isEqualTo(50);
         Assertions.assertThat(item2.quality).isEqualTo(3);
@@ -83,12 +83,9 @@ public class RepoTest {
 
 
         Item item = new Item("Sulfura", 50, 3);
-        servicio.crearItem(item);
-
+        repo.crearItem(item);
         Integer largo = itemRepo.listAll().size();
-
-        servicio.deleteItem(item);
-
+        repo.deleteItem(item);
         Assertions.assertThat(itemRepo.listAll().size()).isEqualTo(largo - 1);
     }
 

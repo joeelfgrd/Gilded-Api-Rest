@@ -14,6 +14,9 @@ import jakarta.persistence.Column;
 @NoArgsConstructor
 public class Item{
 
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "item_nom")
     public String name = "";
@@ -24,10 +27,7 @@ public class Item{
     @Column(name = "item_quality")
     public int quality = 0;
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
+    
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
@@ -36,7 +36,13 @@ public class Item{
 
 
     @Override
-   public String toString() {
-        return this.name + ", " + this.quality + ", " + this.sellIn;
+    public String toString() {
+        StringBuilder itm = new StringBuilder();
+        itm.append("Item{");
+        itm.append("name='").append(name).append('\'');
+        itm.append(", sellIn=").append(sellIn);
+        itm.append(", quality=").append(quality);
+        itm.append('}');
+        return itm.toString();
     }
 }

@@ -26,7 +26,8 @@ public class Repo {
     }
 
     public List<Item> cargaItems(String nombre){
-        return itemRepo.listAll().stream().filter(item -> item.name.equals(nombre)).toList();
+        return itemRepo.listAll().stream()
+        .filter(item -> item.name.equals(nombre)).toList();
     }
 
     @Transactional
